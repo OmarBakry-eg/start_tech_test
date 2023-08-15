@@ -16,19 +16,19 @@ mixin Constants {
   static void get hideLoadingOrNavBack => Get.back();
 
   static Future<void> navigateTo(
-    Widget screen, {
+    String screen, {
     bool pushReplacment = false,
     bool pushAndRemoveUntil = false,
   }) async =>
       pushReplacment
-          ? Get.off(
+          ? Get.offNamed(
               screen,
             )
           : pushAndRemoveUntil
-              ? Get.offAll(
+              ? Get.offAllNamed(
                   screen,
                 )
-              : Get.to(
+              : Get.toNamed(
                   screen,
                 );
 
@@ -43,6 +43,7 @@ mixin Constants {
       bool barrierDismissible = true,
       bool removeCancelButton = true}) async {
     return AwesomeDialog(
+      headerAnimationLoop: false,
       context: Get.context!,
       dialogType: dialogType,
       title: title ?? 'Error',

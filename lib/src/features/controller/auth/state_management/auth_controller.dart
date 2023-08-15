@@ -2,30 +2,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:start_tech_test/src/features/controller/auth/API/auth_api_controller.dart';
 import 'package:start_tech_test/src/features/model/user_model.dart';
-import 'package:start_tech_test/src/features/view/home/screens/home_screen.dart';
 import 'package:start_tech_test/src/utils/consts.dart';
 
 class AuthController extends GetxController {
   final AuthAPIController authAPIController = AuthAPIController();
   UserModel? model;
 
-
 //? RX
-  RxBool obsecureRegister = false.obs;
-  RxBool obsecureLogin = false.obs; 
-  RxBool obsecureConfirm = false.obs;   
+  RxBool obsecureRegister = true.obs;
+  RxBool obsecureLogin = true.obs;
+  RxBool obsecureConfirm = true.obs;
 
-void obsecureRegLogic(){
-  obsecureRegister.value = !obsecureRegister.value;
-}
+  void obsecureRegLogic() {
+    obsecureRegister.value = !obsecureRegister.value;
+  }
 
-void obsecureLoginLogic(){
-  obsecureLogin.value = !obsecureLogin.value;
-}
+  void obsecureLoginLogic() {
+    obsecureLogin.value = !obsecureLogin.value;
+  }
 
-void obsecureConfirmLogic(){
-  obsecureConfirm.value = !obsecureConfirm.value;
-}
+  void obsecureConfirmLogic() {
+    obsecureConfirm.value = !obsecureConfirm.value;
+  }
+
 //? Sign up logic
   final StringBuffer countryCodeForSignUp = StringBuffer();
   TextEditingController emailTextEditingController = TextEditingController();
@@ -34,7 +33,6 @@ void obsecureConfirmLogic(){
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController confirmPasswordTextEditingController =
       TextEditingController();
-
 
   var signUpFormKey = GlobalKey<FormState>();
   Future<UserModel?> signUpFunc() async {
@@ -46,7 +44,7 @@ void obsecureConfirmLogic(){
           countryCode: countryCodeForSignUp.toString(),
           phone: phoneTextEditingController.text);
       if (model != null) {
-        Constants.navigateTo(const HomeScreen(), pushAndRemoveUntil: true);
+        Constants.navigateTo('/home', pushAndRemoveUntil: true);
         return model;
       }
       return null;
@@ -68,7 +66,7 @@ void obsecureConfirmLogic(){
         password: passwordTextEditingControllerForLogin.text,
       );
       if (model != null) {
-        Constants.navigateTo(const HomeScreen(), pushAndRemoveUntil: true);
+        Constants.navigateTo('/home', pushAndRemoveUntil: true);
         return model;
       }
       return null;

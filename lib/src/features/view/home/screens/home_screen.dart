@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:start_tech_test/src/features/controller/home/state_management/home_controller.dart';
 import 'package:start_tech_test/src/features/view/home/widgets/action_widget.dart';
 import 'package:start_tech_test/src/features/view/home/widgets/profile_data_widget.dart';
 import 'package:start_tech_test/src/utils/base/custom_text_widget.dart';
@@ -8,22 +10,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> profileTitles = [
-      'test01 t',
-      "+971 559944652",
-      "test@test.test"
-    ];
-    List<IconData> profileIcons = [
-      Icons.person_outline,
-      Icons.phone_android,
-      Icons.email_outlined,
-    ];
-    List<String> actionsTitle = [
-      'Update Information',
-      "Change Password",
-      "Delete Account",
-      "Logout",
-    ];
+    final HomeController homeController = Get.find<HomeController>();
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -37,29 +25,31 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ListView.separated(
-              padding: const EdgeInsets.all(20),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (c, i) => ProfileDataWidget(
-                    iconData: profileIcons[i],
-                    title: profileTitles[i],
-                  ),
-              separatorBuilder: (c, i) => const SizedBox(
-                    height: 25,
-                  ),
-              itemCount: profileTitles.length),
+          GetBuilder<HomeController>(builder: (controller) {
+            return ListView.separated(
+                padding: const EdgeInsets.all(20),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (c, i) => ProfileDataWidget(
+                      iconData: homeController.profileIcons[i],
+                      title: homeController.profileTitles[i],
+                    ),
+                separatorBuilder: (c, i) => const SizedBox(
+                      height: 25,
+                    ),
+                itemCount: homeController.profileTitles.length);
+          }),
           ListView.separated(
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (c, i) => ActionWidget(
-                    title: actionsTitle[i],
+                    title: homeController.actionsTitle[i],
                   ),
               separatorBuilder: (c, i) => const SizedBox(
                     height: 15,
                   ),
-              itemCount: actionsTitle.length),
+              itemCount: homeController.actionsTitle.length),
         ],
       ),
     );

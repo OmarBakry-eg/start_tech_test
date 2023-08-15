@@ -14,7 +14,7 @@ class HomeAPIController with HomeBody {
     required String? userID,
   }) async {
     try {
-      if(userID == null){
+      if (userID == null) {
         Constants.dialogMessage(description: 'No ID available');
         return null;
       }
@@ -39,6 +39,7 @@ class HomeAPIController with HomeBody {
   Future<bool> updateUserDataFunc(
       {required String email,
       required String countryCode,
+      required String name,
       required String phone}) async {
     try {
       String? token = await _localStorage.getToken;
@@ -49,6 +50,7 @@ class HomeAPIController with HomeBody {
       await _dioClient.post('api/user/update', token,
           body: updateUserData(
               email: email,
+              name: name,
               countryCode: countryCode,
               phone: phone)) as Response;
       return true;
@@ -75,4 +77,22 @@ class HomeAPIController with HomeBody {
     }
     return false;
   }
+
+Future<bool> deletUserFunc() async {
+    try {
+      String? token = await _localStorage.getToken;
+      if (token == null) {
+        Constants.dialogMessage(description: 'No token available');
+        return false;
+      }
+      await _dioClient.delete('api/user/delete', token,) as Response;
+      return true;
+    } catch (e) {
+      logError('error in changePasswordFunc ${e.toString()}');
+    }
+    return false;
+  }
+
+
+
 }

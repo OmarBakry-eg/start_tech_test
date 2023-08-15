@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:start_tech_test/src/features/controller/auth/state_management/auth_controller.dart';
-import 'package:start_tech_test/src/features/view/auth/screens/login.dart';
 import 'package:start_tech_test/src/features/view/auth/widgets/custom_auth_heading_widget.dart';
 import 'package:start_tech_test/src/utils/base/custom_button.dart';
 import 'package:start_tech_test/src/utils/base/custom_rich_text.dart';
@@ -66,7 +65,7 @@ class RegisterPage extends StatelessWidget {
                     height: 16,
                   ),
                   Obx(() => CustomTextField(
-                        validator: FormValidator.passwordValidator,
+                        //  validator: FormValidator.passwordValidator,
                         obscureText: authController.obsecureRegister.value,
                         suffixIcon: IconButton(
                             onPressed: () {
@@ -132,7 +131,7 @@ class RegisterPage extends StatelessWidget {
                 title1: "Already have an account? ",
                 title2: "Login",
                 onTap: () {
-                  Constants.navigateTo(const LoginPage(),pushAndRemoveUntil: true);
+                  Constants.navigateTo('/login', pushAndRemoveUntil: true);
                 },
               ),
             ],

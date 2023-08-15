@@ -46,30 +46,30 @@ final class FormValidator {
     return res;
   }
 
-  static String? passwordValidator(String? orgText) {
-    final text = orgText?.trimRight();
-    String? res =
-        generalEmptyValidator(text, message: 'Password cannot be empty');
-    if (res == null) {
-      String? checkPass =
-          FormValidatorHelperFunctions.isPasswordCompliant(text!);
-      if (checkPass != null) {
-        return checkPass;
-      }
-    }
-    return res;
-  }
+  // static String? passwordValidator(String? orgText) {
+  //   final text = orgText?.trimRight();
+  //   String? res =
+  //       generalEmptyValidator(text, message: 'Password cannot be empty');
+  //   if (res == null) {
+  //     String? checkPass =
+  //         FormValidatorHelperFunctions.isPasswordCompliant(text!);
+  //     if (checkPass != null) {
+  //       return checkPass;
+  //     }
+  //   }
+  //   return res;
+  // }
 
   static String? confirmPasswordValidator(String? orgText, String password) {
     final text = orgText?.trimRight();
     String? res =
         generalEmptyValidator(text, message: 'Password cannot be empty');
     if (res == null) {
-      String? checkPass =
-          FormValidatorHelperFunctions.isPasswordCompliant(text!);
-      if (checkPass != null) {
-        return checkPass;
-      }
+      // String? checkPass =
+      //     FormValidatorHelperFunctions.isPasswordCompliant(text!);
+      // if (checkPass != null) {
+      //   return checkPass;
+      // }
       if (text != password.trim()) {
         return 'Passwords not matched';
       }

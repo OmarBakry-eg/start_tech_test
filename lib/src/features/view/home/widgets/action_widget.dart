@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:start_tech_test/src/features/view/home/screens/update_information.dart';
+import 'package:get/get.dart';
+import 'package:start_tech_test/src/features/controller/home/state_management/home_controller.dart';
 import 'package:start_tech_test/src/utils/base/custom_rounded_container.dart';
 import 'package:start_tech_test/src/utils/base/custom_text_widget.dart';
 import 'package:start_tech_test/src/utils/consts.dart';
@@ -16,7 +17,16 @@ class ActionWidget extends StatelessWidget {
     return CustomRoundedContainer(
         onTap: () {
           if (title == "Update Information") {
-            Constants.navigateTo(const UpdateInformationPage());
+            Constants.navigateTo('/up_info');
+          }
+          if (title == "Logout") {
+            Get.find<HomeController>().logout();
+          }
+          if (title == "Change Password") {
+            Constants.navigateTo('/up_password');
+          }
+          if (title == "Delete Account") {
+            Get.find<HomeController>().deleteUser();
           }
         },
         raduis: 8,

@@ -122,6 +122,49 @@ class DioClient {
     }
   }
 
+  Future<Object?> delete(
+    String api,
+    String? token, {
+    var body,
+    String? fullURL,
+    bool useFormData = true,
+    bool isLoading = true,
+  }) async {
+    var url = _devBaseURL + api;
+    bool interNetaAvailale = await _internetInfo.isConnected;
+    if (isLoading) {
+      Constants.showLoading;
+    }
+    if (token != "" && token != null) {
+      _dio.options.headers["Authorization"] = "Bearer $token";
+    }
+    _dio.options.headers['Content-Type'] = useFormData
+        ? Headers.formUrlEncodedContentType
+        : Headers.jsonContentType;
+    if (interNetaAvailale) {
+      try {
+        Response response = await _dio.delete(fullURL ?? url, data: body);
+        if (isLoading) {
+          Constants.hideLoadingOrNavBack;
+        }
+
+        return response;
+      } on DioException catch (error) {
+        logError('HEEERREE');
+        if (isLoading) {
+          Constants.hideLoadingOrNavBack;
+        }
+        return _errorFunc(error);
+      }
+    } else {
+      if (isLoading) {
+        Constants.hideLoadingOrNavBack;
+      }
+      Constants.dialogMessage(description: "No internet connection");
+      return "No internet connection";
+    }
+  }
+
   Future<Object?> patch(
     String api,
     String? token, {

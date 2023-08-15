@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:start_tech_test/src/features/view/auth/screens/login.dart';
-import 'package:start_tech_test/src/features/view/auth/screens/register.dart';
 import 'package:start_tech_test/src/features/view/auth/widgets/custom_auth_heading_widget.dart';
 import 'package:start_tech_test/src/utils/base/custom_button.dart';
 import 'package:start_tech_test/src/utils/base/custom_rich_text.dart';
@@ -24,7 +22,7 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 CustomButton(
                   onTap: () {
-                    Constants.navigateTo(const LoginPage(),
+                    Constants.navigateTo('/login',
                         pushReplacment: true);
                   },
                   title: 'Login',
@@ -34,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 CustomButton(
                   onTap: () {
-                    Constants.navigateTo(const RegisterPage(),
+                    Constants.navigateTo('/register',
                         pushReplacment: true);
                   },
                   title: 'Register',

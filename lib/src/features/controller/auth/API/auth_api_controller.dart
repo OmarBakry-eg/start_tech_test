@@ -27,6 +27,7 @@ class AuthAPIController with AuthBody {
               phone: phone)) as Response?;
       _userModel = UserModel.fromJson(res?.data);
       await _localStorage.setNewToken(_userModel.data!.token!);
+      await _localStorage.setNewUserID(_userModel.data!.id!);
       logSuccess('userModel token : ${_userModel.data?.token}');
       return _userModel;
     } catch (e) {
@@ -47,6 +48,8 @@ class AuthAPIController with AuthBody {
           )) as Response;
       _userModel = UserModel.fromJson(res.data);
       await _localStorage.setNewToken(_userModel.data!.token!);
+      await _localStorage.setNewUserID(_userModel.data!.id!);
+
       logSuccess('userModel token : ${_userModel.data?.token}');
       return _userModel;
     } catch (e) {

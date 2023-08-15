@@ -41,7 +41,7 @@ class LocalStorage implements _LocalStorageLogic {
   }
 
 //* User ID
- @override
+@override
   Future<bool> setNewUserID(String userID) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
