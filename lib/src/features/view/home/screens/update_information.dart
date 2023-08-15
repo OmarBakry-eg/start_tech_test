@@ -24,63 +24,69 @@ class UpdateInformationPage extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      resizeToAvoidBottomInset: false,
       body: Form(
         key: homeController.updateDataFormKey,
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Column(
+        child: SingleChildScrollView(
+          child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height,
+              ),
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CustomTextField(
-                  validator: FormValidator.generalEmptyValidator,
-                  screenPadding: const EdgeInsets.symmetric(horizontal: 95),
-                  hintText: homeController.userModel?.data?.name ?? 'Full Name',
-                  hintColor: const Color(0xFFABABAB),
-                  border: Border.all(width: 1, color: const Color(0xFFE0E0E0)),
-                  controller: homeController.nameEditingController,
-                ),
                 const SizedBox(
-                  height: 16,
+                  height: 30,
                 ),
-                CustomTextField(
-                  validator: FormValidator.signUpPhoneNumberValidator,
-                  screenPadding: const EdgeInsets.symmetric(horizontal: 95),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 65),
-                  hintText: homeController.userModel?.data?.phone ?? '55994435',
-                  hintColor: const Color(0xFFABABAB),
-                  border: Border.all(width: 1, color: const Color(0xFFE0E0E0)),
-                  controller: homeController.phoneEditingController,
-                  addCountryPicker: true,
-                  holdUpValue: homeController.countryValue,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                CustomTextField(
-                  validator: FormValidator.emailOrPhoneValidator,
-                  screenPadding: const EdgeInsets.symmetric(horizontal: 95),
-                  hintText:
-                      homeController.userModel?.data?.email ?? 'Email Address',
-                  hintColor: const Color(0xFFABABAB),
-                  border: Border.all(width: 1, color: const Color(0xFFE0E0E0)),
-                  controller: homeController.emailEditingController,
-                ),
-                const SizedBox(
-                  height: 26,
-                ),
-                CustomButton(
-                  onTap: () {
-                    homeController.updateUserData();
-                  },
-                  title: 'Save',
+                Column(
+                  children: [
+                    CustomTextField(
+                      validator: FormValidator.generalEmptyValidator,
+                      screenPadding: const EdgeInsets.symmetric(horizontal: 95),
+                      hintText: homeController.userModel?.data?.name ?? 'Full Name',
+                      hintColor: const Color(0xFFABABAB),
+                      border: Border.all(width: 1, color: const Color(0xFFE0E0E0)),
+                      controller: homeController.nameEditingController,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                      validator: FormValidator.signUpPhoneNumberValidator,
+                      screenPadding: const EdgeInsets.symmetric(horizontal: 95),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 65),
+                      hintText: homeController.userModel?.data?.phone ?? '55994435',
+                      hintColor: const Color(0xFFABABAB),
+                      border: Border.all(width: 1, color: const Color(0xFFE0E0E0)),
+                      controller: homeController.phoneEditingController,
+                      addCountryPicker: true,
+                      holdUpValue: homeController.countryValue,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                      validator: FormValidator.emailOrPhoneValidator,
+                      screenPadding: const EdgeInsets.symmetric(horizontal: 95),
+                      hintText:
+                          homeController.userModel?.data?.email ?? 'Email Address',
+                      hintColor: const Color(0xFFABABAB),
+                      border: Border.all(width: 1, color: const Color(0xFFE0E0E0)),
+                      controller: homeController.emailEditingController,
+                    ),
+                    const SizedBox(
+                      height: 26,
+                    ),
+                    CustomButton(
+                      onTap: () {
+                        homeController.updateUserData();
+                      },
+                      title: 'Save',
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
