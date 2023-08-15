@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 mixin Constants {
   static String devBaseURL = 'https://whatsupdoctor.onrender.com/';
 
@@ -52,13 +53,11 @@ mixin Constants {
               if (onCancelPressed != null) {
                 onCancelPressed();
               }
-              hideLoadingOrNavBack;
             },
       btnOkOnPress: () {
         if (onOkPressed != null) {
           onOkPressed();
         }
-        hideLoadingOrNavBack;
       },
     )..show();
   }

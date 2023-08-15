@@ -76,7 +76,7 @@ class LoginPage extends StatelessWidget {
                 title1: "Don't have an account? ",
                 title2: "Register",
                 onTap: () {
-                  Constants.navigateTo(const RegisterPage());
+                  Constants.navigateTo(const RegisterPage(),pushAndRemoveUntil: true);
                 },
               ),
             ],

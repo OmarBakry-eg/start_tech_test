@@ -24,7 +24,8 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 CustomButton(
                   onTap: () {
-                    Constants.navigateTo(const LoginPage());
+                    Constants.navigateTo(const LoginPage(),
+                        pushReplacment: true);
                   },
                   title: 'Login',
                 ),
@@ -33,7 +34,8 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 CustomButton(
                   onTap: () {
-                    Constants.navigateTo(const RegisterPage());
+                    Constants.navigateTo(const RegisterPage(),
+                        pushReplacment: true);
                   },
                   title: 'Register',
                   reverseStyle: true,

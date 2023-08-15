@@ -17,7 +17,6 @@ class RegisterPage extends StatelessWidget {
     final AuthController authController = Get.find<AuthController>();
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Center(
         child: Form(
           key: authController.signUpFormKey,
@@ -133,7 +132,7 @@ class RegisterPage extends StatelessWidget {
                 title1: "Already have an account? ",
                 title2: "Login",
                 onTap: () {
-                  Constants.navigateTo(const LoginPage());
+                  Constants.navigateTo(const LoginPage(),pushAndRemoveUntil: true);
                 },
               ),
             ],
